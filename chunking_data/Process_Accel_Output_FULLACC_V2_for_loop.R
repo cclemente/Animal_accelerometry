@@ -1,8 +1,8 @@
-install.packages("moments")
+#install.packages("moments")
 library(moments)
 
 ########################parallel testing
-install.packages('parallel')
+#install.packages('parallel')
 library(parallel)
 numCores <- detectCores()
 numCores
@@ -23,42 +23,14 @@ setwd("E:/projects/CATS/12 cats cleaned/Coco/Split files")
 #cleans up memory
 gc()
 
-#fold <- list.dirs(path = ".", full.names = TRUE, recursive = TRUE)
-
-#To get time of entire process
-#TimeofProcess <- c(tmstrt=Sys.time(),NA)
-
-##### Set function for finding whole numbers(for the timing function)
-# check.integer <- function(N){
-#   !grepl("[^[:digit:]]", format(N,  digits = 20, scientific = FALSE))
-# }
-
-##### Loops through individual subject directories in the main directory
-#ff=2
-
-
 #get list of filenames in subject directory
 filenames <- (Sys.glob("*.csv"))
 
 
-
-# #build an empty data frame to store our data
-# data_out<-data.frame(file=NA, time=NA, meanX=NA, meanY=NA, meanZ=NA, 
-#                      maxx=NA, maxy=NA, maxz=NA, 
-#                      minx=NA, miny=NA, minz=NA,
-#                      sdx=NA,  sdy=NA, sdz=NA, 
-#                      SMA=NA,  minODBA=NA, maxODBA=NA, minVDBA=NA, maxVDBA=NA, 
-#                      sumODBA=NA, sumVDBA=NA, 
-#                      corXY=NA, corXZ=NA, corYZ=NA, 
-#                      skx=NA,  sky=NA, skz=NA, 
-#                      kux=NA,  kuy=NA, kuz=NA)
-# data_out<-data_out[-1,]
-
-
-  #a for loop to run through all the files from each video
-#for (ii in 1:length(filenames)){
+  #for loop to run through all the files from each chunk
 for (ii in 1:length(filenames)){
-    #ii=1
+   
+  #print the file names so we can see the progress
   print(filenames[ii])
   
   #clean up the data  
@@ -67,12 +39,12 @@ for (ii in 1:length(filenames)){
   data<-data[,2:5]
   colnames(data)<-c('V1', 'V2', 'V3', 'V4')
   
-  
   #define epoch length to be 50 samples long
   # at 50Hz this should be about 1sec per epoch
 
   acc2 <- matrix()
   
+  #this is the main loop. You will need to run the doAccloop function below
   system.time(
     acc2<-foreach(jj = 1:(nrow(data)-50), .packages=c('moments'), .combine=rbind) %dopar% {
       doAccloop(jj,data)
@@ -80,7 +52,7 @@ for (ii in 1:length(filenames)){
   )
   
   
-  
+  #give each file a unique name
   name<-substr(filenames[ii], 1, (nchar(filenames[ii])-4))
  write.csv(acc2, paste0(name,'_processed.csv'))
 
@@ -90,7 +62,7 @@ for (ii in 1:length(filenames)){
 
 
 #function that runs the analysis
-jj=1
+#jj=1
 doAccloop <- function(jj, data) { # Creates a traning or test matrix, from data frame x, using a sample of size n (default is all rows)			
   
   dat1=data[jj:(jj+50),]
@@ -142,12 +114,8 @@ doAccloop <- function(jj, data) { # Creates a traning or test matrix, from data 
   kuy<-kurtosis(dat1$V3)
   kuz<-kurtosis(dat1$V4)
   
-  #Time of epoch
+  #Time of epoch - this works for AX3 time input only
   time=as.POSIXct((dat1$V1[1] - 719529)*86400, origin = "1970-01-01", tz = "UTC")
-  
-  #as.POSIXct((737444.36684 - 719529)*86400, origin = "1970-01-01", tz = "UTC")
-  
-  
   
   dat_temp<-data.frame(file=filenames[ii], time=time, meanX=meanX, meanY=meany, meanZ=meanz,
                        maxx=maxx, maxy=maxy, maxz=maxz, 
@@ -158,8 +126,6 @@ doAccloop <- function(jj, data) { # Creates a traning or test matrix, from data 
                        corXY=corXY, corXZ=corXZ, corYZ=corYZ, 
                        skx=skx,  sky=sky, skz=skz, 
                        kux=kux,  kuy=kuy, kuz=kuz)
-  
-  #data_out<-rbind(data_out,dat_temp)
   
   return(dat_temp)
 }
