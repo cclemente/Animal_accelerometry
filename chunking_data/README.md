@@ -15,6 +15,12 @@ There should be two files above. The first should be short and simply allows us 
 
 (5) Important. Now is a good time to move / delete the large accel file as it will mess up the next step below if left in this folder. 
 
+##Edited 12/03/2021
+
+modified so the chunked files are now numbered with an interger padded with zeros e.g. 001, 002
+this way the files are in the correct order when read back into R in the next step. 
+
+
 # Create predictors. 
 
 (1) Open the file 'Process_Accel_Output_FULLACC_V2_forloop.R'
