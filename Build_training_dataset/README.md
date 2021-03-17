@@ -19,6 +19,8 @@ You can use the attached code (Build_training_data.R) as a guide.
 
 make sure to change the output filename at the end of the file to be something meaningful for your species / subjects. 
 
+(5) You will also have to create a activity key. (example shown above = Quoll_Behaviour_ActNo.csv) : this is just the key that translates the number for the activity to the behaviour. 
+
 
 
 
