@@ -1,5 +1,5 @@
 
-#Building training datasets
+##Building training datasets
 
 This step should be relatively simple if you have organised your files well. The matlab script should have output a series of txt files with the filename of the video. 
 
