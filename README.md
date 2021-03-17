@@ -21,7 +21,10 @@ Now you should have a series of small files with behaviour and accelerometer tra
 To be detailed soon.
 
 # Step 5: chunking data and creating predictor variables 
-This step is similar to what we have done above with the training data set, but here we dont have any associated activities. The files sizes are often very large meaning we need to split them up into small sections. 
+This step is similar to what we have done above with the training data set, but here we dont have any associated activities. The files sizes are often very large meaning we need to split them up into small sections.
+
+# Step 6: Use the SOM to label the unknown data
+This step will use the SOM created from the training data to label the chunked files we have built in step 5
 
 
 
