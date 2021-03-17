@@ -1,5 +1,5 @@
 
-##Building training datasets
+# Building training datasets
 
 This step should be relatively simple if you have organised your files well. The matlab script should have output a series of txt files with the filename of the video. 
 
@@ -8,6 +8,8 @@ These should be arranged in a logical way, for example by individual, or treatme
 In the example code provided the files are separated by both individual (e.g. Maple) and by treatment (e.g. Bib off). 
 
 You can use the attached code (Build_training_data.R) as a guide. 
+
+# steps
 
 (1) Change the path on line 4. Then run the sys.glob() function line 5, to get a list of files in that folder. 
 
