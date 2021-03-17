@@ -1,0 +1,13 @@
+Activity,Number
+Sitting,1
+Lying/Resting,2
+Scurry,4
+Vigilance,6
+Standing Vig,7
+Walking,8
+Vig Walking,9
+Turning,10
+Jumping,11
+Gallop,12
+Climbing,13
+Bounds,14
