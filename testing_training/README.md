@@ -7,11 +7,13 @@ First you should check your code to make sure that all behaviours are appoximate
 barplot(table(dat$Activity))
 ```
 
-#code to remove a behaviour which is over represented. 
+# code to remove a behaviour which is over represented. 
 
-#sitting is overly represented. 
-#we can try to reduce the number 
+sitting is overly represented. 
+we can try to reduce the number 
+
+```R
 Sit_ind <- which(dat$Activity=='Sitting') #randomly selecting 10000 rows
 sit_ind_remove <- Sit_ind[sample(length(Sit_ind), 120000)]
 dat2<-dat[-sit_ind_remove,]
-
+```
