@@ -13,7 +13,7 @@ sitting is overly represented.
 we can try to reduce the number 
 
 ```R
-Sit_ind <- which(dat$Activity=='Sitting') #randomly selecting 10000 rows
+Sit_ind <- which(dat$Activity=='Sitting') #find which data is the activity
 sit_ind_remove <- Sit_ind[sample(length(Sit_ind), 120000)]
 dat2<-dat[-sit_ind_remove,]
 ```
