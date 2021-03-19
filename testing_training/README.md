@@ -1,7 +1,7 @@
 
 # testing the training data set
 
-First you should check your code to make sure that all behaviours are appoximately evenly represented in your training data. Too much of any one behaviour will result in over representation in the SOM grid. 
+First you should check your data to make sure that all behaviours are appoximately evenly represented in your training data. Too much of any one behaviour will result in over representation in the SOM grid. 
 
 ```R
 barplot(table(dat$Activity))
