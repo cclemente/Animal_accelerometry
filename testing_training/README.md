@@ -17,3 +17,9 @@ Sit_ind <- which(dat$Activity=='Sitting') #find which data is the activity
 sit_ind_remove <- Sit_ind[sample(length(Sit_ind), 120000)]
 dat2<-dat[-sit_ind_remove,]
 ```
+
+# explore the data
+For a first look at the training data you can download the 'cat_SOM.nb.html' file and open in a browser
+This should give you a good indication for different visualisations
+
+
