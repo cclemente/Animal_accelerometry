@@ -22,4 +22,9 @@ dat2<-dat[-sit_ind_remove,]
 For a first look at the training data you can download the 'cat_SOM.nb.html' file and open in a browser
 This should give you a good indication for different visualisations
 
+# what shape to make the SOM? 
+i got a reviewer ask me to run a sensitivty analysis on the shape of the SOM. So we should try this out. I have written some code to do this and have uploaded it. 
+Have a look at the 'Cat_SOM_2021_SOMshape.R' file. 
+I modified the doSOM function to allow different shape SOMs (though i kept them all symetrical) - luckily i found for my data set that ~ 7x7 works well. But we should be sure to test this for different data sets. 
+
 
