@@ -18,7 +18,7 @@ Date should then be labelled onto the accelerometer trace. To do this we have cu
 Now you should have a series of small files with behaviour and accelerometer traced linked together. We need to combine them into a larger file for the next step in our analysis.
 
 # Step 4: Testing training data set
-To be detailed soon.
+Go to the testing_training subfolder. This will go through various aspects of testing the training data. And eventually will include a competitive SOM process. 
 
 # Step 5: chunking data and creating predictor variables 
 This step is similar to what we have done above with the training data set, but here we dont have any associated activities. The files sizes are often very large meaning we need to split them up into small sections.
