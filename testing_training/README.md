@@ -32,5 +32,10 @@ the rlen value in the superSOM function changes the number of times the complete
 
 ![alt text](https://github.com/cclemente/Animal_accelerometry/blob/main/testing_training/Rlen_boxplot.jpeg)
 
+nor does it appear to change with the behaviour. 
+
+![alt text](https://github.com/cclemente/Animal_accelerometry/blob/main/testing_training/plot_rlen.jpeg)
+
+So, i guess thats good news, other than being i giant waste of processing time on my poor laptop. rlen can be safely ignored, and left as the default. 
 
 
