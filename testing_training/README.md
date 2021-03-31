@@ -30,7 +30,7 @@ I modified the doSOM function to allow different shape SOMs (though i kept them 
 # should we change the rlen function? 
 the rlen value in the superSOM function changes the number of times the complete data set will be presented to the network. It defaults to 100, but presumably if the network gets to see the data more, then it should be able to make a good decision. However this appears not to be the case. 
 
-
+![alt text](https://github.com/cclemente/Animal_accelerometry/blob/main/testing_training/Rlen_boxplot.jpeg)
 
 
 
