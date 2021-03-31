@@ -27,6 +27,10 @@ i got a reviewer ask me to run a sensitivty analysis on the shape of the SOM. So
 Have a look at the 'Cat_SOM_2021_SOMshape.R' file. 
 I modified the doSOM function to allow different shape SOMs (though i kept them all symetrical) - luckily i found for my data set that ~ 7x7 works well. But we should be sure to test this for different data sets. 
 
+Updated the SOMshape.R file above. It now includes the code to sample 80% of the training data for each behaviour. And includes the code to vary the shape of the SOM allowing assymetrical SOM grids. 
+
+![alt text](https://github.com/cclemente/Animal_accelerometry/blob/main/testing_training/HeatMap_shape.jpeg)
+
 # should we change the rlen function? 
 the rlen value in the superSOM function changes the number of times the complete data set will be presented to the network. It defaults to 100, but presumably if the network gets to see the data more, then it should be able to make a good decision. However this appears not to be the case. 
 
