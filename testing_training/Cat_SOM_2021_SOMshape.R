@@ -13,7 +13,7 @@ library(RColorBrewer)
 library(data.table)
 
 # Folders
-dFold <- "D:/cat code/Analysis 2021"
+dFold <- "J:/cat code/Analysis 2021"
 setwd(dFold)
 
 # Prep the data for the SOM
@@ -32,35 +32,14 @@ dat <- na.omit(dat) # We have loads of data...dump NAs
 biboff <- filter(dat, Bib == "of")
 bibon <- filter(dat, Bib == "on")
 
-##tester row
-ind <- sample(nrow(biboff), 100000)
-trDat <- trSamp(biboff, n = ind)
-tstDat <- trSamp(biboff, n = -ind)
-ssom <- supersom(trDat, grid = somgrid(7, 7, "hexagonal")) 				
-ssom.pred <- predict(ssom, newdata = tstDat)
-ptab <- table(predictions = ssom.pred$predictions$activity, activity = tstDat$activity)
+#then the function cleans up the data for the SOM
+ind <- biboff %>% group_by(biboff$act) %>% sample_frac(.8)
+trDat<-trSamp2(ind)
 
-true_positives  <- diag(ptab)
-false_positives <- rowSums(ptab) - true_positives
-false_negatives <- colSums(ptab) - true_positives
-true_negatives  <- sum(ptab) - true_positives - false_positives - false_negatives
+#remaining 20%
+tstind<-subset(biboff, !(biboff$X %in% ind$X))
+tstDat<-trSamp2(ind)
 
-sum(c((true_positives+true_negatives)/(true_positives+true_negatives+false_positives+false_negatives)))/12
-
-y=100000
-##sENSITIVTY
-SENS<-c(true_positives/(true_positives+false_negatives),samples=y)
-##Precision - how often a model is right when it predicts a behaviour
-PREC<-c(true_positives/(true_positives+false_positives),samples=y)
-#Specifitity -how often the absense of the behaviour is correctly identified by the model
-SPEC<-c(true_negatives/(true_negatives+false_positives),samples=y)
-#Accuracy - How often the model is right
-ACCU<-c((true_positives+true_negatives)/(true_positives+true_negatives+false_positives+false_negatives),samples=y)
-
-sum(ACCU[1:12])/12
-
-
-SOMout<-doSOM(biboff, 10000, 7)
 
 library(parallel)
 numCores <- detectCores()
@@ -73,15 +52,16 @@ library(foreach)
 library(doParallel)
 registerDoParallel(numCores)  # use multicore, set to the number of our cores
 
+somsize<-rep(seq(4,9,1),6) #acc
+somsize2<-rep(4:9, times=1, each=6)
+somsize3<-cbind(somsize,somsize2)
 
-
-somsize<-rep(seq(4,10,1),10) #acc
 
 acc3 <- matrix()
 system.time(
-  acc3<-foreach(i = 1:length(somsize), .packages=c('kohonen'), .combine=rbind) %dopar% {
+  acc3<-foreach(i = 1:36, .packages=c('kohonen'), .combine=rbind) %dopar% {
     #acc[i,] <- doSOM(biboff, samples[i])
-    doSOM(biboff, 20000, somsize[i])
+    doSOM(trDat,tstDat, somsize3[i,1], somsize3[i,2])
     #print(i)
   }
 )
@@ -90,12 +70,39 @@ head(acc3)
 
 boxplot(swatting~shape, subset(acc3, test=='ACCU'))
 
-write.csv(acc3, 'SOMshape.csv')
+write.csv(acc3, 'SOMshape2.csv')
+acc3<-read.csv('SOMshape.csv')
+
 
 long_DF <- acc3 %>% gather(behaviour, acc, 'bite/hold':watching)
 head(long_DF)
-boxplot(acc~shape, subset(long_DF, test=='SENS'))
+boxplot(acc~shape, subset(long_DF, test=='ACCU'))
 boxplot(acc~shape+test, long_DF)
+
+# Load the lattice package
+library("lattice")
+
+acc4<-subset(long_DF, test=='ACCU')
+
+#make heat map 
+df1<-data.frame(acc=acc4$acc, width=acc4$width, height=acc4$height)
+
+#creates a matrix
+df2<-with(df1, tapply(acc, list(shape = width, height), FUN= mean, na.rm=TRUE))
+
+#CREATE OWN COLOURMAP
+colours_heat3 = c('#F4E119', '#F7C93B', '#C4BB5F', '#87BE76', '#59BD87', '#2CB6A0', '#00AAC1', '#1B8DCD', '#3D56A6', '#3A449C')
+
+#LATTICE PLOT
+levelplot(t(df2), cex.axis=1.0, cex.lab=1.0, col.regions=colorRampPalette(rev(colours_heat3)), 
+          screen = list(z = -90, x = -60, y = 0),
+          xlab=list(label='height', cex = 1.0),
+          ylab=list(label='width', cex = 1.0),
+          main=list(label='shape', cex=1.0), 
+          colorkey=list(labels=list(cex=1.0)),
+          scales = list(cex=1.0),
+          asp=1)
+
 
 
 #######
@@ -105,11 +112,14 @@ boxplot(acc~shape+test, long_DF)
 
 
 #SOM function
-doSOM <- function(x, y, z) { # Draw a sample of size 10k from all biboff, build a SOM, predict to rest data and compute overall accuracy
-  ind <- sample(nrow(x), y) # Indices for training sample - random sample of y bib-off observations for cats
-  trDat <- trSamp(x, n = ind)
-  tstDat <- trSamp(x, n = -ind)
-  ssom <- supersom(trDat, grid = somgrid(z, z, "hexagonal")) 				
+#SOM function
+doSOM <- function(trDat, tstDat, z, zz) { # Draw a sample of size 10k from all biboff, build a SOM, predict to rest data and compute overall accuracy
+  #ind <- sample(nrow(x), y) # Indices for training sample - random sample of y bib-off observations for cats
+  #trDat <- trSamp(x, n = ind)
+  #tstDat <- trSamp(x, n = -ind)
+  time_out<-system.time(
+    ssom <- supersom(trDat, grid = somgrid(z, zz, "hexagonal"))
+  )
   ssom.pred <- predict(ssom, newdata = tstDat)
   ptab <- table(predictions = ssom.pred$predictions$activity, activity = tstDat$activity)
   
@@ -118,16 +128,16 @@ doSOM <- function(x, y, z) { # Draw a sample of size 10k from all biboff, build 
   false_negatives <- colSums(ptab) - true_positives
   true_negatives  <- sum(ptab) - true_positives - false_positives - false_negatives
   
-  SENS<-c(true_positives/(true_positives+false_negatives),samples=y, shape=z)
+  SENS<-c(true_positives/(true_positives+false_negatives), shape=z)
   ##Precision - how often a model is right when it predicts a behaviour
-  PREC<-c(true_positives/(true_positives+false_positives),samples=y, shape=z)
+  PREC<-c(true_positives/(true_positives+false_positives), shape=z)
   #Specifitity -how often the absense of the behaviour is correctly identified by the model
-  SPEC<-c(true_negatives/(true_negatives+false_positives),samples=y, shape=z)
+  SPEC<-c(true_negatives/(true_negatives+false_positives), shape=z)
   #Accuracy - How often the model is right
-  ACCU<-c((true_positives+true_negatives)/(true_positives+true_negatives+false_positives+false_negatives),samples=y, shape=z)
+  ACCU<-c((true_positives+true_negatives)/(true_positives+true_negatives+false_positives+false_negatives), shape=z)
   
   dat_out<-as.data.frame(rbind(SENS,PREC,SPEC,ACCU))
-  myDF <- cbind(test = rownames(dat_out), dat_out)
+  myDF <- cbind(test = rownames(dat_out), dat_out, time=time_out[3], width=z, height=zz)
   return(myDF)
 }
 
@@ -135,6 +145,15 @@ doSOM <- function(x, y, z) { # Draw a sample of size 10k from all biboff, build 
 trSamp <- function(x, n = 1:nrow(x)) { # Creates a traning or test matrix, from data frame x, using a sample of size n (default is all rows)			
   d <- x[n, 4:31] # Random sample of 10 000 rows of the data
   act <- as.factor(x$activity[n]) # Corresponding activities
+  out <- list(measurements = as.matrix(d), activity = act)
+  return(out)
+}
+
+
+# A custom function to make life easier
+trSamp2 <- function(x) { # Creates a training or test matrix, from data frame x, using a sample of size n (default is all rows)			
+  d <- x[,4:31] # Random sample of 10 000 rows of the data
+  act <- as.factor(x$activity) # Corresponding activities
   out <- list(measurements = as.matrix(d), activity = act)
   return(out)
 }
