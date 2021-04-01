@@ -28,6 +28,8 @@ proc.time() - ptm
 user  system elapsed 
  169.70    0.53  171.54 
 
+#we get results out directly from the RF
+
 rf_classifier$confusion[,1:12]
           bite/hold eating galloping grooming jumping lying pouncing sitting swatting trotting walking
 bite/hold      8577      0         0        0       0     5        0       1       13        0      12
@@ -56,6 +58,19 @@ trotting         4
 walking         21
 watching     29387
 
+ 
+ bite/hold    eating galloping  grooming   jumping     lying  pouncing   sitting  swatting
+SENS 0.9987191 0.9991182 0.9820225 0.9991355 0.9894441 0.9994342 0.9948454 0.9978787 0.9931201
+PREC 0.9958203 0.9993037 0.9562363 0.9987039 0.9797909 0.9984346 0.9836901 0.9975764 0.9951487
+SPEC 0.9997773 0.9998991 0.9998822 0.9998637 0.9996535 0.9997555 0.9998099 0.9996194 0.9995082
+ACCU 0.9997239 0.9998003 0.9998355 0.9997944 0.9994831 0.9997122 0.9997533 0.9993832 0.9989191
+      trotting   walking  watching
+SENS 0.9956379 0.9933540 0.9960007
+PREC 0.9902386 0.9974217 0.9954946
+SPEC 0.9999468 0.9995270 0.9990549
+ACCU 0.9999236 0.9985667 0.9985255
+
+#we can also try to predict our testing data set (called validation1 here) 
 
 varImpPlot(rf_classifier)
 
