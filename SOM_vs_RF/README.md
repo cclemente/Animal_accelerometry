@@ -28,6 +28,35 @@ proc.time() - ptm
 user  system elapsed 
  169.70    0.53  171.54 
 
+rf_classifier$confusion[,1:12]
+          bite/hold eating galloping grooming jumping lying pouncing sitting swatting trotting walking
+bite/hold      8577      0         0        0       0     5        0       1       13        0      12
+eating            0  21527         0        0       1     0        0       1        1        1       5
+galloping         0      0       437        0       2     0        0       1        3        0      10
+grooming          0      0         0    16181       0     2        0       6        0        0      10
+jumping           0      4         1        0    2812     0        1       5        9        0      27
+lying             3      2         0        5       0 22962        1       5        8        0       8
+pouncing          0      0         3        0       1     0     1930       0        7        1      13
+sitting           1      2         0        6       5     2        1   23050        8        0      17
+swatting          4      1         1        0       0     2        1       5    15590        0      23
+trotting          0      1         0        0       0     0        0       0        1      913       3
+walking           1      6         1        2       8     1        2      12       13        1   26306
+watching          2      3         2        1      13     1        4      13       45        1      48
+          watching
+bite/hold        5
+eating           6
+galloping        4
+grooming         3
+jumping         11
+lying            4
+pouncing         7
+sitting         14
+swatting        39
+trotting         4
+walking         21
+watching     29387
+
+
 varImpPlot(rf_classifier)
 
 # Validation set assessment #1: looking at confusion matrix
