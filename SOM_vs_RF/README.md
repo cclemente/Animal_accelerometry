@@ -28,11 +28,10 @@ prediction_for_table <- predict(rf_classifier,validation1[,-29])
 ptab<-table(observed=validation1[,29],predicted=prediction_for_table)
 
 
-```
 
-This was the output from R 
+#This was the output from R 
 
- ptab
+ #ptab
            predicted
 observed    bite/hold eating galloping grooming jumping lying pouncing sitting swatting trotting
   bite/hold       231      0         0        0       0     0        0       0        0        0
@@ -63,9 +62,9 @@ observed    walking watching
   watching        0     2292
   
   
-  Summarised...
+  #Summarised...
   
-  dat_out
+  #dat_out
      bite/hold eating galloping  grooming   jumping     lying  pouncing   sitting  swatting  trotting
 SENS         1      1         1 1.0000000 1.0000000 1.0000000 1.0000000 0.9969512 0.9971182 0.9886364
 PREC         1      1         1 0.9990680 0.9620253 0.9981203 0.9925373 0.9969512 0.9961612 1.0000000
@@ -76,6 +75,9 @@ SENS 0.9963964 0.9960887
 PREC 0.9972949 0.9986928
 SPEC 0.9995743 0.9994877
 ACCU 0.9991418 0.9985289
+
+
+```
 
 
   
