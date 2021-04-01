@@ -1,8 +1,0 @@
-
-This file should compare SOM vs RF
-
-```R
-#import the package
-install.packages('randomForest')
-library(randomForest)
-```
