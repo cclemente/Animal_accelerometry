@@ -1,6 +1,12 @@
 
 # label Unknown data
 
+Once you have created your SOM through [Step 5](https://github.com/cclemente/Animal_accelerometry/tree/main/chunking_data)
+
+
+
+
+
 Steps to follow to create a SOM
 
 (1) create the SOM from the training data set. To do this we need to sample evenly from our data to make the training data set. 
@@ -13,4 +19,3 @@ This will control the number of times the SOM is sent back to the training camp.
 
 (4) Run the SOM workflow above in a competitive environment. Each time output the result of the SOM to an RDA file (function = saveRDS.R) - which should allow us to call it back in. 
 Output the result of the optimization to a file, only keep the SOM if it was better than the last one. Let this run until the SOMs stop getting better. 
-
