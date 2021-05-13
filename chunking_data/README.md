@@ -38,7 +38,43 @@ On my computer each chunked file took ~6 minutes to run. (i5 processor, 4 cores,
 This means that for the ~327 chunk files to run will take ~32 hours. Be prepared not to use the computer in that time for anything that is processor heavy. 
 
 
+# Clean NAs from processed data.
 
+Due to the nature of our predictor variables some of the calculations have resulted in NAs because of no variation within the epochs. As such we need to replace or remove the NAs however as seen in previous steps of this process we cannot just use the na.omit() function because this will result in low energy behaviours being misrepresented. We  replaced all correlation variables where the standard deviation was 0 with a correlation of 1. The skewedness of the data with no variation was set to 0. Kurtosis was removed as it was problematic (usually the last three variables of your data set, adjust on line 67 to reflect these variables -kux, kuy, kuz). 
+
+The below code is set up as a loop so that it will run through the entirity of your chunked_processed files and clean them up. It can be found in Clean_ProcDat_V1.R
+
+~~~R
+## loop for cleaning
+for (ii in 3:length(filenames)){
+  
+  dat <- read.csv(filenames[ii])
+  
+  
+  dat$corXY[which(dat$sdx=="0")] = 1 ## set CorXY to 1 when sdx is 0
+  dat$corXY[which(dat$sdy=="0")] = 1 ## set CorXY to 1 when sdy is 0
+  
+  dat$corXZ[which(dat$sdx=="0")] = 1 ## set CorXZ to 1 when sdx is 0
+  dat$corXZ[which(dat$sdz=="0")] = 1 ## set CorXZ to 1 when sdz is 0
+  
+  dat$corYZ[which(dat$sdz=="0")] = 1 ## set CorYZ to 1 when sdz is 0
+  dat$corYZ[which(dat$sdy=="0")] = 1 ## set CorYZ to 1 when sdy is 0
+  
+  dat$skx[is.na(dat$skx)] <- 0 ## set skx NAs to 0
+  dat$sky[is.na(dat$sky)] <- 0 ## set sky NAs to 0
+  dat$skz[is.na(dat$skz)] <- 0 ## set skz NAs to 0
+  
+  dat <- dat[,1:28] ## Trim off unwanted variables (kurtosis)
+  
+  NaTot <- NaTot+sum(is.na(dat)) ## Record number of NAs still present in files
+  
+  
+  
+  #write out file and print iteration for timing
+  write.csv(dat, paste0(substr(filenames[ii],1, nchar(filenames[ii])-4),"_cleaned.csv"))
+  print(ii)
+}
+~~~
 
 
 
