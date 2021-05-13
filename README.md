@@ -17,7 +17,7 @@ Date should then be labelled onto the accelerometer trace. To do this we have cu
 # Step 3: Build training data set
 Now you should have a series of small files with behaviour and accelerometer traced linked together. We need to combine them into a larger file for the next step in our analysis.
 
-# Step 4: Testing training data set
+# [Step 4: Testing training data set](https://github.com/cclemente/Animal_accelerometry/tree/main/testing_training)
 Go to the testing_training subfolder. This will go through various aspects of testing the training data. And eventually will include a competitive SOM process. 
 
 # Step 5: chunking data and creating predictor variables 
