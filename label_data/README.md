@@ -1,7 +1,7 @@
 
 # label Unknown data
 
-Once you have created your SOM through [Step 5](https://github.com/cclemente/Animal_accelerometry/tree/main/chunking_data)
+Once you have created your SOM through [Step 4](https://github.com/cclemente/Animal_accelerometry/tree/main/testing_training) we will use that SOM to label your Unkown data from [Step 5](https://github.com/cclemente/Animal_accelerometry/tree/main/chunking_data). 
 
 
 
