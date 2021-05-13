@@ -23,7 +23,7 @@ Go to the testing_training subfolder. This will go through various aspects of te
 # Step 5: chunking data and creating predictor variables 
 This step is similar to what we have done above with the training data set, but here we dont have any associated activities. The files sizes are often very large meaning we need to split them up into small sections.
 
-# Step 6: Use the SOM to label the unknown data
+# [Step 6: Use the SOM to label the unknown data](https://github.com/cclemente/Animal_accelerometry/tree/main/label_data)
 This step will use the SOM created from the training data to label the chunked files we have built in step 5
 
 
