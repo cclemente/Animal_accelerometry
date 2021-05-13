@@ -173,6 +173,22 @@ MSPerf[,2:12]
 
 ```
 
+You should now have a master SOM which you can save for later 
+
+
+```R
+#outputting the data for later
+save(MSOM, file="MSOM_7by7.rda")
+
+ssom.pred <- predict(MSOM, newdata = tstDat)
+ptab <- table(predictions = ssom.pred$predictions$activity, activity = tstDat$activity)
+
+#Save SOM figure
+#SAVE grid figures
+save(ptab, file =  "MSOM_7by7_Confusion_Matrix.rda")
+write.csv(ptab, "MSOM_7by7_Confusion_Matrix.csv")
+
+```
 
 
 # explore the data
