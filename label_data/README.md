@@ -9,8 +9,9 @@ This was shown in the previous step, but can also be done in a loop using the Cl
 
 Make sure you check the number of columns you want to keep 
 
-
+```R
 (e.g. dat <- dat[,1:28] )
+```
 
 
 The resulting files should end with "_cleaned.csv"
