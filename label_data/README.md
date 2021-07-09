@@ -7,6 +7,12 @@ Once you have created your SOM through [Step 4](https://github.com/cclemente/Ani
 The first this we need to do is clean the data to make sure that it is in the same format as the training data set. 
 This was shown in the previous step, but can also be done in a loop using the Clean_ProcDat_V2.R file. 
 
+Make sure you check the number of columns you want to keep 
+
+
+(e.g. dat <- dat[,1:28] )
+
+
 The resulting files should end with "_cleaned.csv"
 
 Move these to a separate file without any other Csv files in it. 
