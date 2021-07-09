@@ -63,6 +63,18 @@ bib_status = 'OFF'
 
 ```
 
+Next we have to run a function to convert the files into the format for the predict function. However, its important to check that we are gathering the right number of predictor variables into the 'd' matrix. If the tidyverse code doesn't work, you can specify the column numbers directly. 
+
+```R
+trSamp2 <- function(x) { # Creates a training or test matrix, from data frame x, using a sample of size n (default is all rows)			
+  #d <- x[,5:29] # select only the data rows
+  d <- dat %>% select(meanX:skz)
+  act <- as.factor(x$activity)
+  # Corresponding activities
+  out <- list(measurements = as.matrix(d), activity = act)
+  return(out)
+}
+```
 
 
 
