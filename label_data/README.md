@@ -76,6 +76,68 @@ trSamp2 <- function(x) { # Creates a training or test matrix, from data frame x,
 }
 ```
 
+Next we start a loop for predicting the data and putting the output into a suitable format. 
+
+first we get out data into the right format, and run the predict function. 
+
+```R
+dat2 <- trSamp2(dat) ## coerce data into appropriate format for predict
+
+ssom.pred <- predict(MSOM, newdata = dat2$measurements, whatmap = 1) # predict behaviors
+
+```
+
+Next we want to put the output into a suitable format for later analysis. 
+In this example, we extract the subject from the file name - this will have to be edited for your filename structure. 
+
+```R
+### Create our new dataframe ###
+dat3 <- dat[ , c( "file", "time")]
+dat3$subject <- str_split(dat3$file, "_", simplify = TRUE)[1]## insert subject
+```
+
+Next we pull out some time variables like hour and day
+
+```R
+dat3$time<-as.character(dat3$time)
+dat3$hours<- hour(dat3$time)## insert hour
+dat3$days<-day(dat3$time)## insert day
+```
+
+Finally we insert out predicted behaviours
+
+```R
+dat3$behaviors <- ssom.pred$predictions$activity ##insert behaviors
+dat3$behaviors <- fct_explicit_na(dat3$behaviors, "Unknown") ## change NA to factor unknown
+```
+
+Add in any custom variables (e.g. bib status)
+
+```R
+dat3$bib <- bib_status
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
