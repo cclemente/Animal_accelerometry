@@ -20,7 +20,7 @@ Now you should have a series of small files with behaviour and accelerometer tra
 # [Step 4: Testing training data set](https://github.com/cclemente/Animal_accelerometry/tree/main/testing_training)
 Go to the testing_training subfolder. This will go through various aspects of testing the training data. And eventually will include a competitive SOM process. 
 
-# Step 5: chunking data and creating predictor variables 
+# [Step 5: chunking data and creating predictor variables](https://github.com/cclemente/Animal_accelerometry/tree/main/chunking_data) 
 This step is similar to what we have done above with the training data set, but here we dont have any associated activities. The files sizes are often very large meaning we need to split them up into small sections.
 
 # [Step 6: Use the SOM to label the unknown data](https://github.com/cclemente/Animal_accelerometry/tree/main/label_data)
