@@ -117,6 +117,37 @@ Add in any custom variables (e.g. bib status)
 dat3$bib <- bib_status
 ```
 
+Next we save the raw data - which might be useful for a later analysis like for predicting stride frequency 
+
+```R
+#saves the raw behaviour
+save(dat3, file=paste0(getwd(),'/raw_behaviour/', str_split(dat3$file[1], '.csv')[[1]][1],'behaviour','.rda'))
+```
+
+Then we aggreagate the data, taking the length, so we can see how often each behaviour is predicted for each hours of the day. Removed 'bib is not needed. 
+
+```R
+## aggregate behavior counts by behaviour, subject, days, and hours ##
+temp_agg <- aggregate(dat3$behaviors, by=list(behaviors = dat3$behaviors, subject=dat3$subject, days=dat3$days, hours=dat3$hours, bib=dat3$bib), 
+                     FUN = length)
+
+beh_agg <- rbind(beh_agg,temp_agg) # store for total output of subject
+```
+
+
+Once the loop is finished save your data
+
+```R
+
+setwd('F:/CATS/12 cats cleaned/Obi/split')#20/06/21
+write.csv(beh_agg, "beh_agg_Obi_Biboff_10_by_10.csv") ##Write out .csv
+
+```
+
+
+
+
+
 
 
 
