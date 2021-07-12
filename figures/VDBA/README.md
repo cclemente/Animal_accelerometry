@@ -59,4 +59,44 @@ boxplot(maxVDBA~bib+subject, agg_out, col=c('grey','blue'))
 
 ```
 
+Finally we can use a polynomial to explore continuous changes per hour
+
+
+```R
+
+#reorder data
+biboff<-biboff[order(biboff$hour),]
+
+#make an empty plot
+plot(maxVDBA ~ hour, data = agg_out, type='n', ylim=c(1,1.25))
+
+# model
+model <- lm(maxVDBA ~ poly(hour,6), data = biboff)
+
+# predicts + interval
+predicted.intervals <- predict(model,data.frame(hour=biboff$hour),interval='confidence',
+                               level=0.99)
+
+lines(biboff$hour,predicted.intervals[,1],col='grey',lwd=3)
+lines(biboff$hour,predicted.intervals[,2],col='black',lwd=1)
+lines(biboff$hour,predicted.intervals[,3],col='black',lwd=1)
+
+
+
+bibon<-bibon[order(bibon$hour),]
+
+###bibon
+model <- lm(maxVDBA ~ poly(hour,6), data = bibon)
+
+# predicts + interval
+predicted.intervals <- predict(model,data.frame(hour=bibon$hour),interval='confidence',
+                               level=0.99)
+
+lines(bibon$hour,predicted.intervals[,1],col='blue',lwd=3)
+lines(bibon$hour,predicted.intervals[,2],col='black',lwd=1)
+lines(bibon$hour,predicted.intervals[,3],col='black',lwd=1)
+
+```
+
+![LinesVDBA](https://user-images.githubusercontent.com/13363767/125233563-2ee3b400-e322-11eb-8150-5c54d489d10b.jpeg)
 
