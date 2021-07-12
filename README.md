@@ -26,7 +26,7 @@ This step is similar to what we have done above with the training data set, but 
 # [Step 6: Use the SOM to label the unknown data](https://github.com/cclemente/Animal_accelerometry/tree/main/label_data)
 This step will use the SOM created from the training data to label the chunked files we have built in step 5
 
-# [Step 7: Make some nice plots](https://github.com/cclemente/Animal_accelerometry/tree/main/label_data)
+# [Step 7: Make some nice plots](https://github.com/cclemente/Animal_accelerometry/tree/main/figures)
 This step will show code to make some nice plots. 
 
 
