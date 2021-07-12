@@ -31,3 +31,32 @@ agg_out<-read.csv('agg_out2.csv')
 
 ```
 
+Some different figures to explore changes per hour 
+
+```R
+
+
+pal <- colorRampPalette(c('darkgrey', 'orange', "darkgrey"))
+boxplot(maxVDBA~hour, agg_out, col=pal(24))
+
+biboff<-agg_out[which(agg_out$bib=='OFF'),]
+bibon<-agg_out[which(agg_out$bib=='ON'),]
+
+boxplot(maxVDBA~hour, biboff, col=pal(24), main='Grey = BibON, Blue = BibOFF', xlab='hour')
+boxplot(maxVDBA~hour, bibon, col=pal(24))
+
+
+boxplot(maxVDBA~bib+hour, agg_out, col=c('grey','blue'), main='Grey = BibOFF, Blue = BibON', axes=FALSE, frame.plot=TRUE, xlab='hours')
+Axis(side=1, labels=FALSE, xlab='hours')
+Axis(side=2, labels=TRUE)
+
+#try some statistics (basic at this stage) 
+fit<-aov(maxVDBA~bib*subject, agg_out)
+summary(fit)
+
+#explore subject
+boxplot(maxVDBA~bib+subject, agg_out, col=c('grey','blue'))
+
+```
+
+
