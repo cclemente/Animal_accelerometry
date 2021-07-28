@@ -11,7 +11,7 @@
 [Click here for figures to build donuts](https://github.com/cclemente/Animal_accelerometry/tree/main/figures/DONUTS)
 
 
-<img src="https://user-images.githubusercontent.com/13363767/127272683-ef0d1a61-393a-4644-87ac-91802f4dadf2.jpg" alt="alt text" width="350" height="600">
+<img src="https://user-images.githubusercontent.com/13363767/127272683-ef0d1a61-393a-4644-87ac-91802f4dadf2.jpg" alt="alt text" width="380" height="600">
 
 [Click here for figures to build energy box plots](https://github.com/cclemente/Animal_accelerometry/tree/main/figures/ENERGY)
 
