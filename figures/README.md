@@ -6,7 +6,7 @@
 [Click here for figures to show you how to explore VDBA with each hour](https://github.com/cclemente/Animal_accelerometry/tree/main/figures/VDBA)
 
 
-<img src="https://user-images.githubusercontent.com/13363767/127272153-3d3b99db-4dba-4554-afab-abf556003462.png" alt="alt text" width="700" height="300">
+<img src="https://user-images.githubusercontent.com/13363767/127272153-3d3b99db-4dba-4554-afab-abf556003462.png" alt="alt text" width="600" height="300">
 
 [Click here for figures to build donuts]()
 
