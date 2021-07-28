@@ -8,7 +8,15 @@
 
 <img src="https://user-images.githubusercontent.com/13363767/127272153-3d3b99db-4dba-4554-afab-abf556003462.png" alt="alt text" width="550" height="300">
 
-[Click here for figures to build donuts]()
+[Click here for figures to build donuts](https://github.com/cclemente/Animal_accelerometry/tree/main/figures/DONUTS)
+
+
+<img src="https://user-images.githubusercontent.com/13363767/127272683-ef0d1a61-393a-4644-87ac-91802f4dadf2.jpg" alt="alt text" width="400" height="300">
+
+[Click here for figures to build energy box plots](https://github.com/cclemente/Animal_accelerometry/tree/main/figures/ENERGY)
+
+
+
 
 
 
