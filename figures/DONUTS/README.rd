@@ -1,5 +1,5 @@
 
-'''R
+```R
 
 #### FIGURE 3 #####
 ### Behavior Donut ###
@@ -46,4 +46,4 @@ fempie <- ggplot(totmean, aes(x=2, y=x, fill = behaviors))+
 plot(fempie) # Plot the figure created above
 
 
-'''
+```
