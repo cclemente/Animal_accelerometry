@@ -11,7 +11,9 @@ This code has not been updated for some time. Oakleigh Wilson is working on an u
 We found there is an error in this code which may over estimate the accuracy of the SOM model. 
 
 the predict function lines
+```R
 ssom.pred <- predict(ssom, newdata = tstDat)
+```R
 
 should be replaced with the following
 ssom.pred <- predict(ssom, newdata = tstDat, whatmap="act")
