@@ -5,6 +5,19 @@ This readme should act as a guide for the animal accelerometer pipeline.
 
 Developed by Christofer Clemente and David Schoeman, University of the Sunshine Coast
 
+# NOTICE 
+This code has not been updated for some time. Oakleigh Wilson is working on an updated version of this code which can be found on her github #[here](https://github.com/OakAlice/SelfOrganisingMapWorkflow/tree/main)
+
+We found there is an error in this code which may over estimate the accuracy of the SOM model. 
+
+the predict function lines
+ssom.pred <- predict(ssom, newdata = tstDat)
+
+should be replaced with the following
+ssom.pred <- predict(ssom, newdata = tstDat, whatmap="act")
+
+Where the 'act' correspond to the label for your behaviours (typically 'act' in the examples given here. 
+
 # Step 1: Data collection.
 Accelerometers should be attached to animals in a firm and secure fashion. The type of accelerometer is not very important. We have been using the AX3 accelerometer from axivity
 https://axivity.com/product/ax3
