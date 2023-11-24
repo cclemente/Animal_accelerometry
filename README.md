@@ -13,10 +13,12 @@ We found there is an error in this code which may over estimate the accuracy of 
 the predict function lines
 ```R
 ssom.pred <- predict(ssom, newdata = tstDat)
-```R
+```
 
 should be replaced with the following
+```R
 ssom.pred <- predict(ssom, newdata = tstDat, whatmap="act")
+```
 
 Where the 'act' correspond to the label for your behaviours (typically 'act' in the examples given here. 
 
