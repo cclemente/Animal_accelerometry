@@ -1,6 +1,16 @@
 
 # Matlab scripts 
 
+
+## Update 13/03/2024
+
+I have uploaded a new script (sync station) which should hopefully work better than the last one. 
+
+New instructions coming soon! 
+
+## old instructions below 
+
+
 This folder contains the matlab code to allign accelerometer data with videos plus an example file. 
 
 Data was collected by Jasmine Annett, University of the Sunshine Coast. 
