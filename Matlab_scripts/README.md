@@ -14,7 +14,7 @@ Steps are as follows
 
 ##Note i have fully debugged the zoom feature, so if you notice anything strange let me know. 
 
-
+An example file 'dog_behaviours.csv' shows the format to add behaviours to tag. 
 
 
 ## Update 13/03/2024
