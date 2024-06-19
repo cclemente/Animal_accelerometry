@@ -1,6 +1,21 @@
 
 # Matlab scripts 
 
+## Update 19/06/2024
+I made a few bug fixes and updated the sync station script code to version 3
+
+Steps are as follows
+(1) Open the video file
+(2) Get the time stamp for the calibration video using properties, or [Mediainfo](https://mediaarea.net/en/MediaInfo/Download) 
+(3) set this in the format '18-apr-2019 10:47:54' i.e. with a three character month
+(4) set the buffer before and after the video (helps with finding traces when there is non-perfect video clock allignment 
+(5) open the accel
+(6) Set the delay, click on the middle window. 
+
+##Note i have fully debugged the zoom feature, so if you notice anything strange let me know. 
+
+
+
 
 ## Update 13/03/2024
 
